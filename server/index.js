@@ -17,6 +17,8 @@ BookTopic.belongsTo(Book)
 Topic.hasMany(BookTopic)
 BookTopic.belongsTo(Topic)
 
+const {register, login} = require('./controllers/authController')
+
 const {PORT} = process.env
 
 const app = express()
@@ -24,9 +26,11 @@ const app = express()
 app.use(cors())
 app.use(express.json())
 
+app.post('/api/register', register)
+app.post('/api/login', login)
 
 
-
-sequelize.sync({force: true})
+sequelize.sync()
+// sequelize.sync({force: true})
     .then(() => app.listen(PORT, console.log(`Take us to warp ${PORT}!`)))
     .catch(err => console.log(err))
