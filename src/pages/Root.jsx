@@ -1,12 +1,13 @@
-import React from "react"
+import {useContext} from "react"
 import { Outlet, NavLink } from "react-router-dom"
 import Auth from "./Auth"
+import AuthContext from "../store/AuthContext"
 
 const Root = () => {
-    const userId = false
+    const {state} = useContext(AuthContext)
     return (
         <div>
-            {userId ? (
+            {state.userId ? (
                 <nav>
                     <NavLink to="/home">Home</NavLink>
                     <NavLink to="/completed">Completed Books</NavLink>
