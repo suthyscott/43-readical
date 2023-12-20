@@ -11,7 +11,7 @@ const Auth = () => {
 
     const handleSubmit = e => {
         e.preventDefault()
-        axios.post(`http://localhost:4545/api/${register? 'register' : 'login'}`, {username, password})
+        axios.post(`/api/${register? 'register' : 'login'}`, {username, password})
           .then(res => {
             console.log(res.data)
             dispatch({type: 'LOGIN', payload: res.data})

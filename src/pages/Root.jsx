@@ -4,7 +4,7 @@ import Auth from "./Auth"
 import AuthContext from "../store/AuthContext"
 
 const Root = () => {
-    const {state} = useContext(AuthContext)
+    const {state, dispatch} = useContext(AuthContext)
     return (
         <div>
             {state.userId ? (
@@ -14,6 +14,7 @@ const Root = () => {
                     <NavLink to="/addbook">Add a new book</NavLink>
                     <NavLink to="/booklist">View Reading List</NavLink>
                     <NavLink to="/account">My Account</NavLink>
+                    <button onClick={() => dispatch({type: 'LOGOUT'})}>Logout</button>
                 </nav>
             ) : (
                 <Auth />

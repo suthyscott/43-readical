@@ -3,7 +3,6 @@
   "private": true,
   "version": "0.0.0",
   "main": "server/index.js",
-  "proxy": "http://localhost:4545",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
