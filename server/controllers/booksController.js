@@ -26,5 +26,18 @@ module.exports = {
             console.log(err)
             res.status(500).send('Something went wrong in getAllBooks')
         }
+    },
+    editBook: async (req, res) => {
+        try {
+            const {title, desc, imgURL, priority, bookId} = req.body
+
+        await Book.update({title, desc, imgURL, priority}, {where: {id: bookId}})
+
+        res.sendStatus(200)
+
+        } catch(err){
+            console.log(err)
+            res.status(500).send('Something went wrong in getAllBooks')
+        }
     }
 }

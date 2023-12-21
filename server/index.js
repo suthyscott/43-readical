@@ -18,7 +18,7 @@ Topic.hasMany(BookTopic)
 BookTopic.belongsTo(Topic)
 
 const {register, login} = require('./controllers/authController')
-const {addBook, getAllBooks} = require('./controllers/booksController')
+const {addBook, getAllBooks, editBook} = require('./controllers/booksController')
 
 const {PORT} = process.env
 
@@ -32,6 +32,7 @@ app.post('/api/login', login)
 
 app.post('/api/book', addBook)
 app.get('/api/books/:userId', getAllBooks)
+app.put('/api/book', editBook)
 
 
 sequelize.sync()

@@ -12,12 +12,22 @@ export const getAllBooks = async () => {
 }
 
 const Booklist = () => {
-  const allBooks = useLoaderData()
+  const {state} = useContext(AuthContext)
+  const [allBooks, setAllBooks] = useState(useLoaderData())
+
+  const refetchAllBooks = () => {
+    axios.get(`/api/books/${state.userId}`)
+      .then(res => {
+        console.log(res.data)
+        setAllBooks(res.data)
+      })
+      .catch(err => console.log(err))
+  }
 
   return (
     <div>
       {allBooks.map(book => {
-        return <BookCard key={book.id}  book={book}/>
+        return <BookCard key={book.id}  book={book} refetchAllBooks={refetchAllBooks}/>
       })}
     </div>
   )
