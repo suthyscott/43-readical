@@ -13,5 +13,18 @@ module.exports = {
             console.log(err)
             res.status(500).send('Something went wrong in addBook')
         }
+    },
+    getAllBooks: async (req, res) => {
+        try{
+            const {userId} = req.params
+
+            const allBooks = await Book.findAll({where: {userId}})
+
+            res.status(200).send(allBooks)
+
+        } catch(err){
+            console.log(err)
+            res.status(500).send('Something went wrong in getAllBooks')
+        }
     }
 }

@@ -5,7 +5,7 @@ import Booklist from "./pages/Booklist.jsx"
 import AddBook from "./pages/AddBook.jsx"
 import Completed from "./pages/Completed.jsx"
 import Account from "./pages/Account.jsx"
-import Auth from "./pages/Auth.jsx"
+import { getAllBooks } from "../src/pages/Booklist.jsx"
 
 const router = createBrowserRouter([
     {
@@ -19,7 +19,8 @@ const router = createBrowserRouter([
             },
             {
                 path: "/booklist",
-                element: <Booklist />
+                element: <Booklist />,
+                loader: getAllBooks
             },
             {
                 path: "/addbook",
