@@ -7,41 +7,41 @@ import Completed from "./pages/Completed.jsx"
 import Account from "./pages/Account.jsx"
 import { getAllBooks } from "../src/pages/Booklist.jsx"
 
-const router = createBrowserRouter([
-    {
-        path: "/",
-        element: <Root />,
-        basename: '/home',
-        children: [
-            {
-                path: "/home",
-                element: <Home />
-            },
-            {
-                path: "/booklist",
-                element: <Booklist />,
-                loader: getAllBooks
-            },
-            {
-                path: "/addbook",
-                element: <AddBook />
-            },
-            {
-                path: "/completed",
-                element: <Completed />
-            },
-            {
-                path: "/account",
-                element: <Account />
-            }
-        ]
-    }
-])
+const router = createBrowserRouter(
+    [
+        {
+            path: "/",
+            element: <Root />,
+            children: [
+                {
+                    path: "/home",
+                    element: <Home />
+                },
+                {
+                    path: "/booklist",
+                    element: <Booklist />,
+                    loader: getAllBooks
+                },
+                {
+                    path: "/addbook",
+                    element: <AddBook />
+                },
+                {
+                    path: "/completed",
+                    element: <Completed />
+                },
+                {
+                    path: "/account",
+                    element: <Account />
+                }
+            ]
+        }
+    ],
+    // { basename: "/home" }
+)
 
 const App = () => {
-  return (
-    <RouterProvider router={router}/>
-  )
+    return <RouterProvider router={router} />
 }
 
 export default App

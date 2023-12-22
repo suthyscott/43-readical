@@ -8,7 +8,7 @@ const Root = () => {
     return (
         <div>
             {state.userId ? (
-                <nav>
+                <nav className="flex w-full h-[10vh] justify-between items-center">
                     <NavLink to="/home">Home</NavLink>
                     <NavLink to="/completed">Completed Books</NavLink>
                     <NavLink to="/addbook">Add a new book</NavLink>

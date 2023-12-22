@@ -17,7 +17,7 @@ const BookCard = ({book, refetchAllBooks}) => {
   }
 
   return (
-    <div className='h-[500px] w-[500px]'>
+    <div className='h-[500px] w-[500px] flex flex-col justify-center items-center'>
         <h1>{book.title}</h1>
         <h2>{book.desc}</h2>
         <img src={book.imgURL} className='h-3/4 w-3/4'/>

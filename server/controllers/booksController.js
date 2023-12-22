@@ -1,43 +1,46 @@
-const {Book} = require('../models/book')
+const { Book } = require("../models/book")
 
 module.exports = {
     addBook: async (req, res) => {
         try {
-            const {title, desc, imgURL, priority, userId} = req.body
+            const { title, desc, imgURL, priority, userId } = req.body
 
-            await Book.create({title, desc, imgURL, priority, userId})
+            await Book.create({ title, desc, imgURL, priority, userId })
 
-            res.status(200).send('That worked!')
-
-        } catch(err){
+            res.status(200).send("That worked!")
+        } catch (err) {
             console.log(err)
-            res.status(500).send('Something went wrong in addBook')
+            res.status(500).send("Something went wrong in addBook")
         }
     },
     getAllBooks: async (req, res) => {
-        try{
-            const {userId} = req.params
+        try {
+            const { userId } = req.params
 
-            const allBooks = await Book.findAll({where: {userId}})
+            const allBooks = await Book.findAll({
+                where: { userId },
+                order: [["priority", "DESC"]]
+            })
 
             res.status(200).send(allBooks)
-
-        } catch(err){
+        } catch (err) {
             console.log(err)
-            res.status(500).send('Something went wrong in getAllBooks')
+            res.status(500).send("Something went wrong in getAllBooks")
         }
     },
     editBook: async (req, res) => {
         try {
-            const {title, desc, imgURL, priority, bookId} = req.body
+            const { title, desc, imgURL, priority, bookId } = req.body
 
-        await Book.update({title, desc, imgURL, priority}, {where: {id: bookId}})
+            await Book.update(
+                { title, desc, imgURL, priority },
+                { where: { id: bookId } }
+            )
 
-        res.sendStatus(200)
-
-        } catch(err){
+            res.sendStatus(200)
+        } catch (err) {
             console.log(err)
-            res.status(500).send('Something went wrong in getAllBooks')
+            res.status(500).send("Something went wrong in getAllBooks")
         }
     }
 }

@@ -28,7 +28,7 @@ const AddBook = () => {
         <input placeholder='image url' onChange={e => setURL(e.target.value)}/>
         <select onChange={(e) => setPriority(e.target.value)}>
           {levels.map(lev => {
-            return <option value={lev}>{lev}</option>
+            return <option value={lev} key={lev}>{lev}</option>
           })}
         </select>
 
