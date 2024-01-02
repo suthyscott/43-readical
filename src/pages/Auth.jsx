@@ -1,9 +1,11 @@
 import { useState, useContext } from "react"
 import axios from "axios"
 import AuthContext from "../store/AuthContext"
+import { useNavigate } from "react-router-dom"
 
 const Auth = () => {
     const {dispatch} = useContext(AuthContext)
+    const navigate = useNavigate()
 
     const [register, setRegister] = useState(false)
     const [username, setUsername] = useState("")
@@ -15,6 +17,7 @@ const Auth = () => {
           .then(res => {
             console.log(res.data)
             dispatch({type: 'LOGIN', payload: res.data})
+            navigate('/home')
           })
           .catch(err => console.log(err))
     }
@@ -31,6 +34,7 @@ const Auth = () => {
                     onChange={e => setUsername(e.target.value)}
                 />
                 <input
+                type="password"
                     placeholder="password"
                     onChange={e => setPassword(e.target.value)}
                 />

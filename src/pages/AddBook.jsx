@@ -34,6 +34,8 @@ const AddBook = () => {
 
         <button type='submit'>Add Book</button>
       </form>
+
+      <input type='date' min={new Date().toISOString().split('T')[0]} />
     </div>
   )
 }
