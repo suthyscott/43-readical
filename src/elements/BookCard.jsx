@@ -21,6 +21,8 @@ const BookCard = ({book, refetchAllBooks}) => {
         <h1>{book.title}</h1>
         <h2>{book.desc}</h2>
         <img src={book.imgURL} className='h-3/4 w-3/4'/>
+        {/* <h2>Progress: {book.progress}%</h2> */}
+        <progress value={book.progress} max={100} className='w-60 border-solid border border-black' />
         {editing ? (
           <form onSubmit={e => handlePriorityChange(e)}>
             
