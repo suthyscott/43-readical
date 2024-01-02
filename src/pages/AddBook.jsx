@@ -9,13 +9,14 @@ const AddBook = () => {
   const [desc, setDesc] = useState('')
   const [priority, setPriority] = useState(0)
   const [imgURL, setURL] = useState('')
+  const [readBy, setReadBy] = useState('')
 
   const levels = [1,2,3,4,5,6,7,8,9,10]
 
   const handleSubmit = e => {
     e.preventDefault()
 
-    axios.post('/api/book', {title, desc, priority, imgURL, userId: state.userId})
+    axios.post('/api/book', {title, desc, priority, imgURL, userId: state.userId, readBy})
       .then(res => console.log(res.data))
       .catch(err => console.log(err))
   }
@@ -25,7 +26,8 @@ const AddBook = () => {
       <form onSubmit={e => handleSubmit(e)}>
         <input placeholder='title' onChange={e => setTitle(e.target.value)}/>
         <input placeholder='write a description' onChange={e => setDesc(e.target.value)}/>
-        <input placeholder='image url' onChange={e => setURL(e.target.value)}/>
+        <input type='date' onChange={e => setReadBy(e.target.value)} />
+        <input placeholder='image url' onChange={e => setURL(e.target.value)} min={new Date().toISOString().split('T')[0]}/>
         <select onChange={(e) => setPriority(e.target.value)}>
           {levels.map(lev => {
             return <option value={lev} key={lev}>{lev}</option>
@@ -35,7 +37,7 @@ const AddBook = () => {
         <button type='submit'>Add Book</button>
       </form>
 
-      <input type='date' min={new Date().toISOString().split('T')[0]} />
+      {/* <input type='date' min={new Date().toISOString().split('T')[0]} /> */}
     </div>
   )
 }

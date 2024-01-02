@@ -13,6 +13,6 @@ module.exports = {
         title: DataTypes.STRING,
         desc: DataTypes.STRING(1000),
         priority: DataTypes.INTEGER,
-
+        readBy: DataTypes.DATE
     })
 }
