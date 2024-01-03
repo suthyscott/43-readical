@@ -42,5 +42,18 @@ module.exports = {
             console.log(err)
             res.status(500).send("Something went wrong in getAllBooks")
         }
+    },
+    deleteBook: async (req, res) => {
+        try {
+            const {bookId} = req.params
+
+            await Book.destroy({where: {id: bookId}})
+
+            res.sendStatus(200)
+
+        }catch (err) {
+            console.log(err)
+            res.status(500).send("Something went wrong in deleteBook")
+        }
     }
 }

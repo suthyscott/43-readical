@@ -16,6 +16,14 @@ const BookCard = ({book, refetchAllBooks}) => {
       .catch(err => console.log(err))
   }
 
+  const handleDeleteBook = () => {
+    axios.delete(`/api/book/${book.id}`)
+      .then(res => {
+        refetchAllBooks()
+      })
+      .catch(err => console.log(err))
+  }
+
   return (
     <div className='h-[500px] w-[500px] flex flex-col justify-center items-center'>
         <h1>{book.title}</h1>
@@ -35,6 +43,8 @@ const BookCard = ({book, refetchAllBooks}) => {
             <button onClick={() => setEditing(!editing)}>Change Priority</button>
           </div>
         )}
+
+        <button onClick={() => handleDeleteBook()}>Delete</button>
     </div>
   )
 }
