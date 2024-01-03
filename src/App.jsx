@@ -7,6 +7,7 @@ import Completed from "./pages/Completed.jsx"
 import Account from "./pages/Account.jsx"
 import { getAllBooks } from "../src/pages/Booklist.jsx"
 
+
 const router = createBrowserRouter(
     [
         {
@@ -15,7 +16,8 @@ const router = createBrowserRouter(
             children: [
                 {
                     path: "/home",
-                    element: <Home />
+                    element: <Home />,
+                    loader: getAllBooks
                 },
                 {
                     path: "/booklist",

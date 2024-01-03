@@ -17,22 +17,29 @@ const AddBook = () => {
     e.preventDefault()
 
     axios.post('/api/book', {title, desc, priority, imgURL, userId: state.userId, progress})
-      .then(res => console.log(res.data))
+      .then(res => {
+        setTitle('')
+        setDesc('')
+        setPriority(0)
+        setURL('')
+        setProgress(0)
+        alert('Your book was added!')
+      })
       .catch(err => console.log(err))
   }
 
   return (
     <div>
       <form onSubmit={e => handleSubmit(e)}>
-        <label>Book Title</label><input placeholder='title' onChange={e => setTitle(e.target.value)}/>
-        <label>Book Description</label><input placeholder='write a description' onChange={e => setDesc(e.target.value)}/>
-        <label>Book Image</label><input placeholder='image url' onChange={e => setURL(e.target.value)}/>
-        <label>Reading priority</label><select onChange={(e) => setPriority(e.target.value)}>
+        <label>Book Title</label><input placeholder='title' value={title} onChange={e => setTitle(e.target.value)}/>
+        <label>Book Description</label><input placeholder='write a description' value={desc} onChange={e => setDesc(e.target.value)}/>
+        <label>Book Image</label><input placeholder='image url' value={imgURL} onChange={e => setURL(e.target.value)}/>
+        <label>Reading priority</label><select onChange={(e) => setPriority(e.target.value)} defaultValue={priority}>
           {levels.map(lev => {
             return <option value={lev} key={lev}>{lev}</option>
           })}
         </select>
-        <label>Reading Progress</label><input type='number' min={0}  max={100} onChange={e => setProgress(e.target.value)}/>
+        <label>Reading Progress</label><input type='number' value={progress} min={0}  max={100} onChange={e => setProgress(e.target.value)}/>
 
         <button type='submit'>Add Book</button>
       </form>
