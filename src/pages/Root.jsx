@@ -1,5 +1,5 @@
 import {useContext} from "react"
-import { Outlet, NavLink } from "react-router-dom"
+import { Outlet, NavLink, Navigate } from "react-router-dom"
 import Auth from "./Auth"
 import AuthContext from "../store/AuthContext"
 
@@ -16,9 +16,7 @@ const Root = () => {
                     <NavLink to="/account">My Account</NavLink>
                     <button onClick={() => dispatch({type: 'LOGOUT'})}>Logout</button>
                 </nav>
-            ) : (
-                <Auth />
-            )}
+            ) : <Navigate to='/auth' />}
             <Outlet />
         </div>
     )
